@@ -26,12 +26,7 @@ func Unpack(s string) (string, error) {
 			continue
 		}
 
-		if unicode.IsLetter(rune(s[i])) {
-			if unicode.IsLetter(rune(s[i+1])) || unicode.IsSpace(rune(s[i+1])) {
-				newString.WriteByte(s[i])
-				continue
-			}
-
+		if unicode.IsLetter(rune(s[i])) || unicode.IsSpace(rune(s[i])) {
 			if unicode.IsDigit(rune(s[i+1])) {
 				count, err := strconv.Atoi(string(s[i+1]))
 				if err != nil {
@@ -40,17 +35,8 @@ func Unpack(s string) (string, error) {
 				newString.Write([]byte(strings.Repeat(string(s[i]), count)))
 				continue
 			}
-		}
-
-		if unicode.IsSpace(rune(s[i])) {
-			if unicode.IsDigit(rune(s[i+1])) {
-				count, err := strconv.Atoi(string(s[i+1]))
-				if err != nil {
-					return "", ErrInvalidString
-				}
-				newString.Write([]byte(strings.Repeat(string(s[i]), count)))
-				continue
-			}
+			newString.WriteByte(s[i])
+			continue
 		}
 
 		if unicode.IsDigit(rune(s[i])) {
