@@ -2,7 +2,6 @@ package main
 
 import (
 	"errors"
-	"fmt"
 	"strconv"
 	"strings"
 	"unicode"
@@ -18,11 +17,10 @@ func Unpack(s string) (string, error) {
 	}
 
 	if ok := unicode.IsLetter(rune(s[0])); !ok {
-		fmt.Println("Ошибка_3")
 		return "", ErrInvalidString
 	}
 
-	for i, _ := range s {
+	for i := range s {
 		var okFirst bool
 		var okSecond bool
 
@@ -40,7 +38,6 @@ func Unpack(s string) (string, error) {
 
 					count, err := strconv.Atoi(string(s[i+1]))
 					if err != nil {
-						fmt.Println("Ошибка_1: ", err)
 						return "", ErrInvalidString
 					}
 
@@ -49,7 +46,6 @@ func Unpack(s string) (string, error) {
 				}
 			}
 
-			fmt.Println("Ошибка_2")
 			return newString.String(), ErrInvalidString
 		}
 
@@ -67,7 +63,6 @@ func Unpack(s string) (string, error) {
 
 			count, err := strconv.Atoi(string(s[i+1]))
 			if err != nil {
-				fmt.Println("Ошибка_4: ", err)
 				return "", ErrInvalidString
 			}
 
@@ -80,7 +75,6 @@ func Unpack(s string) (string, error) {
 		}
 
 		if !okFirst && okSecond {
-
 			continue
 		}
 
