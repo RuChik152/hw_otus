@@ -16,8 +16,8 @@ linters-settings:
           - "!$test"
         allow:
           - $gostd
-          - github.com/google # все пакеты Google
-          - github.com/stretchr/testify/require # разрешить пакет require
+          - github.com/google
+          - github.com/stretchr/testify/require
       test:
         files:
           - "$test"
