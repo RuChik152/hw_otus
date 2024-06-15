@@ -2,7 +2,6 @@ package main
 
 import (
 	"errors"
-	"fmt"
 	"strconv"
 	"strings"
 	"unicode"
@@ -23,9 +22,11 @@ func Unpack(s string) (string, error) {
 	}
 
 	for i := 0; i < len(runes); i++ {
-		fmt.Println(string(runes[i]))
+		if unicode.IsUpper(runes[i]) {
+			return "", ErrInvalidString
+		}
 
-		if i+1 >= len(s) {
+		if i+1 >= len(runes) {
 			newString.WriteByte(byte(runes[i]))
 			continue
 		}
