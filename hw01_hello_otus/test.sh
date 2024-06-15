@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -xeuo pipefail
 
 expected='!SUTO ,olleH'
